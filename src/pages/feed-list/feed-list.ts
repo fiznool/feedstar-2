@@ -14,6 +14,7 @@ import { FeedService } from '../../providers/feed-service';
   templateUrl: 'feed-list.html'
 })
 export class FeedListPage {
+  feed;
   items = [];
 
   constructor(
@@ -24,7 +25,10 @@ export class FeedListPage {
   ionViewDidLoad() {
     this.feedService
       .getItems()
-      .then(items => this.items = items);
+      .then(res => {
+        this.feed = res.feed;
+        this.items = res.items;
+      });
   }
 
 }

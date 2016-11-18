@@ -20,7 +20,7 @@ export class FeedService {
       .get('http://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(FEED_URL))
       .toPromise()
       .then(response => {
-        return response.json().items
+        return response.json();
       });
   }
 
