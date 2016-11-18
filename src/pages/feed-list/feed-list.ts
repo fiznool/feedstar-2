@@ -12,6 +12,13 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'feed-list.html'
 })
 export class FeedListPage {
+  items = [{
+    title: 'Item 1'
+  }, {
+    title: 'Item 2'
+  }, {
+    title: 'Item 3'
+  }]
 
   constructor(public navCtrl: NavController) {}
 
