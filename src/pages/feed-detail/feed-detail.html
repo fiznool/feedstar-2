@@ -20,7 +20,7 @@
       {{ item?.content }}
     </ion-card-content>
     <ion-item class="card-action-bar">
-      <button color="primary" clear ion-button icon-left item-right>
+      <button color="primary" clear ion-button icon-left item-right (click)="openLink(item?.link)">
         <ion-label>Read More</ion-label>
         <ion-icon item-right name="share-alt"></ion-icon>
       </button>

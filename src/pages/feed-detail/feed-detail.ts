@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, Platform } from 'ionic-angular';
+import { InAppBrowser } from 'ionic-native';
 
 import { Item } from '../../models/item';
 /*
@@ -18,11 +19,18 @@ export class FeedDetailPage {
 
   constructor(
     public navCtrl: NavController,
-    public navParams: NavParams
+    public navParams: NavParams,
+    public platform: Platform
   ) {}
 
   ionViewDidLoad() {
     this.item = this.navParams.get('item');
+  }
+
+  openLink(link: string) {
+    this.platform.ready().then(() => {
+      new InAppBrowser(link, '_blank');
+    });
   }
 
 }
