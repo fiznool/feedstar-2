@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { FeedService } from '../../providers/feed-service';
+
 /*
   Generated class for the FeedList page.
 
@@ -12,18 +14,17 @@ import { NavController } from 'ionic-angular';
   templateUrl: 'feed-list.html'
 })
 export class FeedListPage {
-  items = [{
-    title: 'Item 1'
-  }, {
-    title: 'Item 2'
-  }, {
-    title: 'Item 3'
-  }]
+  items = [];
 
-  constructor(public navCtrl: NavController) {}
+  constructor(
+    public navCtrl: NavController,
+    public feedService: FeedService
+  ) {}
 
   ionViewDidLoad() {
-    console.log('Hello FeedListPage Page');
+    this.feedService
+      .getItems()
+      .then(items => this.items = items);
   }
 
 }

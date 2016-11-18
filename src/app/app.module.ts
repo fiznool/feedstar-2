@@ -1,6 +1,10 @@
 import { NgModule } from '@angular/core';
 import { IonicApp, IonicModule } from 'ionic-angular';
+
 import { MyApp } from './app.component';
+
+import { FeedService } from '../providers/feed-service';
+
 import { FeedListPage } from '../pages/feed-list/feed-list';
 
 @NgModule({
@@ -16,6 +20,8 @@ import { FeedListPage } from '../pages/feed-list/feed-list';
     MyApp,
     FeedListPage
   ],
-  providers: []
+  providers: [
+    FeedService
+  ]
 })
 export class AppModule {}
