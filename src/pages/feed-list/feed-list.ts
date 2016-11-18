@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
+import { Feed } from '../../models/feed';
+import { Item } from '../../models/item';
 import { FeedService } from '../../providers/feed-service';
 
 /*
@@ -14,8 +16,8 @@ import { FeedService } from '../../providers/feed-service';
   templateUrl: 'feed-list.html'
 })
 export class FeedListPage {
-  feed;
-  items = [];
+  feed: Feed;
+  items: Item[];
 
   constructor(
     public navCtrl: NavController,
