@@ -4,6 +4,7 @@ import { NavController } from 'ionic-angular';
 import { Feed } from '../../models/feed';
 import { Item } from '../../models/item';
 import { FeedService } from '../../providers/feed-service';
+import { FeedDetailPage } from '../feed-detail/feed-detail'
 
 /*
   Generated class for the FeedList page.
@@ -31,6 +32,10 @@ export class FeedListPage {
         this.feed = res.feed;
         this.items = res.items;
       });
+  }
+
+  viewItem(item) {
+    this.navCtrl.push(FeedDetailPage, { item })
   }
 
 }

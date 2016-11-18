@@ -6,11 +6,13 @@ import { MyApp } from './app.component';
 import { FeedService } from '../providers/feed-service';
 
 import { FeedListPage } from '../pages/feed-list/feed-list';
+import { FeedDetailPage } from '../pages/feed-detail/feed-detail';
 
 @NgModule({
   declarations: [
     MyApp,
-    FeedListPage
+    FeedListPage,
+    FeedDetailPage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -18,7 +20,8 @@ import { FeedListPage } from '../pages/feed-list/feed-list';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    FeedListPage
+    FeedListPage,
+    FeedDetailPage
   ],
   providers: [
     FeedService
