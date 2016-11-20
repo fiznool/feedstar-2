@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ModalController, NavController } from 'ionic-angular';
 
 import { Feed } from '../../models/feed';
 import { Item } from '../../models/item';
 import { FeedService } from '../../providers/feed-service';
 import { FeedDetailPage } from '../feed-detail/feed-detail'
+import { FeedSettingsPage } from '../feed-settings/feed-settings'
 
 /*
   Generated class for the FeedList page.
@@ -22,6 +23,7 @@ export class FeedListPage {
 
   constructor(
     public navCtrl: NavController,
+    public modalCtrl: ModalController,
     public feedService: FeedService
   ) {}
 
@@ -36,6 +38,10 @@ export class FeedListPage {
 
   viewItem(item) {
     this.navCtrl.push(FeedDetailPage, { item })
+  }
+
+  configureFeed() {
+    this.modalCtrl.create(FeedSettingsPage).present();
   }
 
 }
