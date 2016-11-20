@@ -28,7 +28,11 @@ export class FeedListPage {
   ) {}
 
   ionViewDidLoad() {
-    this.feedService
+    this.refreshItems();
+  }
+
+  refreshItems() {
+    return this.feedService
       .getItems()
       .then(res => {
         this.feed = res.feed;
@@ -41,7 +45,16 @@ export class FeedListPage {
   }
 
   configureFeed() {
-    this.modalCtrl.create(FeedSettingsPage).present();
+    const settingsModal = this.modalCtrl.create(FeedSettingsPage, {
+      feedUrl: this.feedService.feedUrl
+    });
+
+    settingsModal.onDidDismiss(data => {
+      this.feedService.feedUrl = data.feedUrl;
+      this.refreshItems();
+    });
+
+    settingsModal.present();
   }
 
 }

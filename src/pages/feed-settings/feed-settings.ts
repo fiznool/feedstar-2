@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { ViewController } from 'ionic-angular';
+import { NavParams, ViewController } from 'ionic-angular';
+
+import { FeedService } from '../../providers/feed-service';
 
 /*
   Generated class for the FeedSettings page.
@@ -12,11 +14,19 @@ import { ViewController } from 'ionic-angular';
   templateUrl: 'feed-settings.html'
 })
 export class FeedSettingsPage {
+  feedUrl: string;
 
-  constructor(public viewCtrl: ViewController) {}
+  constructor(
+    public viewCtrl: ViewController,
+    public navParams: NavParams
+  ) {}
+
+  ionViewDidLoad() {
+    this.feedUrl = this.navParams.get('feedUrl');
+  }
 
   dismiss() {
-    this.viewCtrl.dismiss();
+    this.viewCtrl.dismiss({ feedUrl: this.feedUrl });
   }
 
 }

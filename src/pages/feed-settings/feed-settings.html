@@ -18,6 +18,19 @@
 </ion-header>
 
 
-<ion-content padding>
-  I'm the settings page!
+<ion-content>
+  <form>
+    <ion-item>
+      <ion-label>Feed</ion-label>
+      <ion-select name="feedUrl" [(ngModel)]="feedUrl">
+        <ion-option value="http://feeds.bbci.co.uk/news/rss.xml?edition=uk">BBC News</ion-option>
+        <ion-option value="https://www.theguardian.com/world/rss">Guardian World News</ion-option>
+        <ion-option value="http://feeds.bbci.co.uk/sport/rss.xml">BBC Sport</ion-option>
+        <ion-option value="https://news.ycombinator.com/rss">Hacker News</ion-option>
+        <ion-option value="http://jsfeeds.com/feed">JSFeeds</ion-option>
+        <ion-option value="http://feeds.gawker.com/lifehacker/full">Lifehacker</ion-option>
+        <ion-option value="http://stackoverflow.com/feeds/tag?tagnames=ionic&sort=newest">Ionic Stack Overflow Questions</ion-option>
+      </ion-select>
+    </ion-item>
+  </form>
 </ion-content>
