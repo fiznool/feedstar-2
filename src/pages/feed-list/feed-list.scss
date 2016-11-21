@@ -1,3 +1,6 @@
 page-feed-list {
-
+  .feed-title {
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
 }

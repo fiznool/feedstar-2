@@ -21,7 +21,7 @@
 <ion-content>
   <ion-list no-margin>
     <button ion-item *ngFor="let item of items" (click)="viewItem(item)">
-      <h2>{{ item.title }}</h2>
+      <h2 class="feed-title" [innerHTML]="item.title"></h2>
       <p>{{ item.pubDate | timeago }}</p>
     </button>
   </ion-list>
