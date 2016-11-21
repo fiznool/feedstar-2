@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/toPromise';
 
+import orderBy from 'lodash/orderBy';
+
 import { Feed } from '../models/feed';
 import { Item } from '../models/item';
 
@@ -31,7 +33,9 @@ export class FeedService {
       .get('http://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(this.feedUrl))
       .toPromise()
       .then(response => {
-        return response.json();
+        const res = response.json();
+        res.items = orderBy(res.items, 'pubDate', ['desc']);
+        return res;
       });
   }
 
