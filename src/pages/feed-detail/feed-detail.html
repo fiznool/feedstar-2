@@ -15,10 +15,8 @@
 
 <ion-content>
   <ion-card>
-    <img *ngIf="item?.thumbnail" [src]="item?.thumbnail">
-    <ion-card-content>
-      {{ item?.content }}
-    </ion-card-content>
+    <img class="feed-image" *ngIf="item?.thumbnail" [src]="item?.thumbnail">
+    <ion-card-content class="feed-content" [innerHTML]="item?.content" (click)="handleContentClick($event)"></ion-card-content>
     <ion-item class="card-action-bar">
       <button color="primary" clear ion-button icon-left item-right (click)="openLink(item?.link)">
         <ion-label>Read More</ion-label>

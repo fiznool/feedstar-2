@@ -3,4 +3,14 @@ page-feed-detail {
     font-size: 1.4rem;
     height: 36px;
   }
+
+  .feed-content {
+    img {
+      margin: 10px 0;
+    }
+  }
+
+  .feed-image + .feed-content img {
+    display: none;
+  }
 }

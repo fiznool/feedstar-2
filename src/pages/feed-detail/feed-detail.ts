@@ -33,4 +33,14 @@ export class FeedDetailPage {
     });
   }
 
+  handleContentClick(evt) {
+    const target = evt.target;
+    if(target.tagName === 'A') {
+      // Intercept the link and open with the
+      // In-App Browser.
+      evt.preventDefault();
+      this.openLink(target.href);
+    }
+  }
+
 }
