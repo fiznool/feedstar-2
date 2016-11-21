@@ -3,6 +3,8 @@ import { IonicApp, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 
+import { Timeago } from '../pipes/timeago';
+
 import { FeedService } from '../providers/feed-service';
 
 import { FeedListPage } from '../pages/feed-list/feed-list';
@@ -11,6 +13,7 @@ import { FeedSettingsPage } from '../pages/feed-settings/feed-settings';
 
 @NgModule({
   declarations: [
+    Timeago,
     MyApp,
     FeedListPage,
     FeedDetailPage,
