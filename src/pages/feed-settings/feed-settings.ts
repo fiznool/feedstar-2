@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { NavParams, ViewController } from 'ionic-angular';
 
 /*
@@ -12,19 +13,24 @@ import { NavParams, ViewController } from 'ionic-angular';
   templateUrl: 'feed-settings.html'
 })
 export class FeedSettingsPage {
-  feedUrl: string;
+  feedSettingsForm: FormGroup;
 
   constructor(
+    public fb: FormBuilder,
     public viewCtrl: ViewController,
     public navParams: NavParams
   ) {}
 
   ionViewDidLoad() {
-    this.feedUrl = this.navParams.get('feedUrl');
+    const feedUrl = this.navParams.get('feedUrl');
+    this.feedSettingsForm = this.fb.group({
+      feedUrl: [ feedUrl, Validators.required ]
+    });
   }
 
   dismiss() {
-    this.viewCtrl.dismiss({ feedUrl: this.feedUrl });
+    const feedUrl = this.feedSettingsForm.value.feedUrl;
+    this.viewCtrl.dismiss({ feedUrl });
   }
 
 }

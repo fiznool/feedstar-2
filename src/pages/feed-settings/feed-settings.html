@@ -19,10 +19,10 @@
 
 
 <ion-content>
-  <form>
+  <form *ngIf="feedSettingsForm" [formGroup]="feedSettingsForm">
     <ion-item>
       <ion-label>Feed</ion-label>
-      <ion-select name="feedUrl" [(ngModel)]="feedUrl">
+      <ion-select formControlName="feedUrl">
         <ion-option value="http://feeds.bbci.co.uk/news/rss.xml?edition=uk">BBC News</ion-option>
         <ion-option value="https://www.theguardian.com/world/rss">Guardian World News</ion-option>
         <ion-option value="http://feeds.bbci.co.uk/sport/rss.xml">BBC Sport</ion-option>
