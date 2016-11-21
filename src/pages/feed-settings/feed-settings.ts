@@ -1,8 +1,6 @@
 import { Component } from '@angular/core';
 import { NavParams, ViewController } from 'ionic-angular';
 
-import { FeedService } from '../../providers/feed-service';
-
 /*
   Generated class for the FeedSettings page.
 

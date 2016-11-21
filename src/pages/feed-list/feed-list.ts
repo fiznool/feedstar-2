@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { ModalController, NavController } from 'ionic-angular';
+import { LoadingController, ModalController, NavController } from 'ionic-angular';
 
 import { Feed } from '../../models/feed';
 import { Item } from '../../models/item';
@@ -22,6 +22,7 @@ export class FeedListPage {
   items: Item[];
 
   constructor(
+    public loadingCtrl: LoadingController,
     public navCtrl: NavController,
     public modalCtrl: ModalController,
     public feedService: FeedService
@@ -32,11 +33,18 @@ export class FeedListPage {
   }
 
   refreshItems() {
+    const loading = this.loadingCtrl.create({
+      content: 'Loading...'
+    });
+    loading.present();
+
     return this.feedService
       .getItems()
       .then(res => {
         this.feed = res.feed;
         this.items = res.items;
+
+        loading.dismiss();
       });
   }
 
@@ -49,7 +57,7 @@ export class FeedListPage {
       feedUrl: this.feedService.feedUrl
     });
 
-    settingsModal.onDidDismiss(data => {
+    settingsModal.onWillDismiss(data => {
       this.feedService.feedUrl = data.feedUrl;
       this.refreshItems();
     });
