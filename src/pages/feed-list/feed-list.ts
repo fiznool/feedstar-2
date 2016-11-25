@@ -38,14 +38,22 @@ export class FeedListPage {
     });
     loading.present();
 
+    const onNext = res => {
+      this.feed = res.feed;
+      this.items = res.items;
+    };
+
+    const onError = err => {
+      console.log('Error fetching stream:', err);
+    };
+
+    const onComplete = () => {
+      loading.dismiss();
+    };
+
     return this.feedService
       .getItems()
-      .then(res => {
-        this.feed = res.feed;
-        this.items = res.items;
-
-        loading.dismiss();
-      });
+      .subscribe(onNext, onError, onComplete);
   }
 
   viewItem(item) {
