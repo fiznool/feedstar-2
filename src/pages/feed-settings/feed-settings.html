@@ -15,17 +15,38 @@
 
 <ion-content>
   <form *ngIf="feedSettingsForm" [formGroup]="feedSettingsForm">
-    <ion-item>
-      <ion-label>Feed</ion-label>
-      <ion-select formControlName="feedUrl">
-        <ion-option value="http://feeds.bbci.co.uk/news/rss.xml?edition=uk">BBC News</ion-option>
-        <ion-option value="https://www.theguardian.com/world/rss">Guardian World News</ion-option>
-        <ion-option value="http://feeds.bbci.co.uk/sport/rss.xml">BBC Sport</ion-option>
-        <ion-option value="https://news.ycombinator.com/rss">Hacker News</ion-option>
-        <ion-option value="http://jsfeeds.com/feed">JSFeeds</ion-option>
-        <ion-option value="http://feeds.gawker.com/lifehacker/full">Lifehacker</ion-option>
-        <ion-option value="http://stackoverflow.com/feeds/tag?tagnames=ionic&sort=newest">Ionic Stack Overflow Questions</ion-option>
-      </ion-select>
-    </ion-item>
+    <ion-list radio-group formControlName="feedUrl">
+      <ion-list-header>
+        Feed
+      </ion-list-header>
+      <ion-item>
+        <ion-label>BBC News</ion-label>
+        <ion-radio value="http://feeds.bbci.co.uk/news/rss.xml?edition=uk"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Guardian World News</ion-label>
+        <ion-radio value="https://www.theguardian.com/world/rss"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>BBC Sport</ion-label>
+        <ion-radio value="http://feeds.bbci.co.uk/sport/rss.xml"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Hacker News</ion-label>
+        <ion-radio value="https://news.ycombinator.com/rss"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>JSFeeds</ion-label>
+        <ion-radio value="http://jsfeeds.com/feed"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Lifehacker</ion-label>
+        <ion-radio value="http://feeds.gawker.com/lifehacker/full"></ion-radio>
+      </ion-item>
+      <ion-item>
+        <ion-label>Ionic Stack Overflow Questions</ion-label>
+        <ion-radio value="http://stackoverflow.com/feeds/tag?tagnames=ionic&sort=newest"></ion-radio>
+      </ion-item>
+    </ion-list>
   </form>
 </ion-content>

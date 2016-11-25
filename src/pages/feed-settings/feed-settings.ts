@@ -21,7 +21,7 @@ export class FeedSettingsPage {
     public feedService: FeedService
   ) {}
 
-  ionViewWillEnter() {
+  ionViewDidLoad() {
     const feedUrl = this.feedService.feedUrl;
     this.feedSettingsForm = this.fb.group({
       feedUrl: [ feedUrl, Validators.required ]
