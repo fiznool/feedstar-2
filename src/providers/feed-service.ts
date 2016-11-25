@@ -5,6 +5,7 @@ import { Storage } from '@ionic/storage';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
 import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/switchMap';
 
 import orderBy from 'lodash/orderBy';
@@ -80,12 +81,12 @@ export class FeedService {
   getItems(): Observable<{ feed: Feed, items: Item[] }> {
     return Observable.fromPromise(this.waitForState)
       .switchMap(() => this.fetchItemsFromAPI());
-
   }
 
   private fetchItemsFromAPI(): Observable<{ feed: Feed, items: Item[] }> {
     return this.http
       .get('http://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(this.feedUrl))
+      .retry(2)
       .map(response => {
         const res = response.json();
 
