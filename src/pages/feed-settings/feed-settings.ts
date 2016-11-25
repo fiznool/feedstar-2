@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { NavParams, ViewController } from 'ionic-angular';
+
+import { FeedService } from '../../providers/feed-service';
 
 /*
   Generated class for the FeedSettings page.
@@ -17,20 +18,20 @@ export class FeedSettingsPage {
 
   constructor(
     public fb: FormBuilder,
-    public viewCtrl: ViewController,
-    public navParams: NavParams
+    public feedService: FeedService
   ) {}
 
-  ionViewDidLoad() {
-    const feedUrl = this.navParams.get('feedUrl');
+  ionViewWillEnter() {
+    const feedUrl = this.feedService.feedUrl;
     this.feedSettingsForm = this.fb.group({
       feedUrl: [ feedUrl, Validators.required ]
     });
   }
 
-  dismiss() {
-    const feedUrl = this.feedSettingsForm.value.feedUrl;
-    this.viewCtrl.dismiss({ feedUrl });
+  ionViewWillLeave() {
+    if(this.feedSettingsForm) {
+      this.feedService.feedUrl = this.feedSettingsForm.value.feedUrl;
+    }
   }
 
 }

@@ -20,6 +20,7 @@ import { FeedSettingsPage } from '../feed-settings/feed-settings'
 export class FeedListPage {
   feed: Feed;
   items: Item[];
+  currentFeedUrl: String;
 
   constructor(
     public loadingCtrl: LoadingController,
@@ -28,8 +29,10 @@ export class FeedListPage {
     public feedService: FeedService
   ) {}
 
-  ionViewDidLoad() {
-    this.refreshItems();
+  ionViewWillEnter() {
+    if(this.feedService.feedUrl !== this.currentFeedUrl) {
+      this.refreshItems();
+    }
   }
 
   refreshItems() {
@@ -41,6 +44,7 @@ export class FeedListPage {
     const onNext = res => {
       this.feed = res.feed;
       this.items = res.items;
+      this.currentFeedUrl = res.url;
     };
 
     const onError = err => {
@@ -58,19 +62,6 @@ export class FeedListPage {
 
   viewItem(item) {
     this.navCtrl.push(FeedDetailPage, { item })
-  }
-
-  configureFeed() {
-    const settingsModal = this.modalCtrl.create(FeedSettingsPage, {
-      feedUrl: this.feedService.feedUrl
-    });
-
-    settingsModal.onWillDismiss(data => {
-      this.feedService.feedUrl = data.feedUrl;
-      this.refreshItems();
-    });
-
-    settingsModal.present();
   }
 
 }

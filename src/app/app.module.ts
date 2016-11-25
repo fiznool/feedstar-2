@@ -8,6 +8,7 @@ import { Timeago } from '../pipes/timeago';
 
 import { FeedService } from '../providers/feed-service';
 
+import { AppTabsPage } from '../pages/app-tabs/app-tabs';
 import { FeedListPage } from '../pages/feed-list/feed-list';
 import { FeedDetailPage } from '../pages/feed-detail/feed-detail';
 import { FeedSettingsPage } from '../pages/feed-settings/feed-settings';
@@ -16,6 +17,7 @@ import { FeedSettingsPage } from '../pages/feed-settings/feed-settings';
   declarations: [
     Timeago,
     MyApp,
+    AppTabsPage,
     FeedListPage,
     FeedDetailPage,
     FeedSettingsPage
@@ -26,6 +28,7 @@ import { FeedSettingsPage } from '../pages/feed-settings/feed-settings';
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    AppTabsPage,
     FeedListPage,
     FeedDetailPage,
     FeedSettingsPage

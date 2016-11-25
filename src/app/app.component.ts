@@ -2,13 +2,13 @@ import { Component } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar, Splashscreen } from 'ionic-native';
 
-import { FeedListPage } from '../pages/feed-list/feed-list';
+import { AppTabsPage } from '../pages/app-tabs/app-tabs';
 
 @Component({
   template: `<ion-nav [root]="rootPage"></ion-nav>`
 })
 export class MyApp {
-  rootPage = FeedListPage;
+  rootPage = AppTabsPage;
 
   constructor(platform: Platform) {
     platform.ready().then(() => {

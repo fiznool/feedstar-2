@@ -31,14 +31,14 @@ $colors: (
 );
 
 $toolbar-background: color($colors, primary);
+$tabbar-background: color($colors, light);
 $list-border-color: rgba(172, 151, 151, 0.5);
-$list-md-border-color: rgba(172, 151, 151, 0.5);
 
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
-
+$tabs-ios-background: $tabbar-background;
 
 
 
@@ -46,12 +46,15 @@ $list-md-border-color: rgba(172, 151, 151, 0.5);
 // --------------------------------------------------
 // Material Design only Sass variables can go here
 
+$list-md-border-color: $list-border-color;
+$tabs-md-background: $tabbar-background;
 
 
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
+$tabs-wp-background: $tabbar-background;
 
 
 

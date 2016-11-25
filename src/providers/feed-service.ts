@@ -95,7 +95,8 @@ export class FeedService {
 
         return {
           feed: this.feed,
-          items: this.items
+          items: this.items,
+          url: this.feedUrl
         };
       });
   }
