@@ -5,7 +5,6 @@ import { Feed } from '../../models/feed';
 import { Item } from '../../models/item';
 import { FeedService } from '../../providers/feed-service';
 import { FeedDetailPage } from '../feed-detail/feed-detail'
-import { FeedSettingsPage } from '../feed-settings/feed-settings'
 
 /*
   Generated class for the FeedList page.

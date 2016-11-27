@@ -7,7 +7,7 @@
 <ion-header>
 
   <ion-navbar>
-    <ion-title>Settings</ion-title>
+    <ion-title>Feeds</ion-title>
   </ion-navbar>
 
 </ion-header>
@@ -16,9 +16,6 @@
 <ion-content>
   <form *ngIf="feedSettingsForm" [formGroup]="feedSettingsForm">
     <ion-list radio-group formControlName="feedUrl">
-      <ion-list-header>
-        Feed
-      </ion-list-header>
       <ion-item>
         <ion-label>BBC News</ion-label>
         <ion-radio value="http://feeds.bbci.co.uk/news/rss.xml?edition=uk"></ion-radio>

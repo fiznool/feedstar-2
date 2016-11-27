@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
 import { FeedListPage } from '../feed-list/feed-list'
 import { FeedSettingsPage } from '../feed-settings/feed-settings'
 
