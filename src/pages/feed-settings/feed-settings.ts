@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { FeedService } from '../../providers/feed-service';
+import pull from 'lodash/pull';
 
 /*
   Generated class for the FeedSettings page.
@@ -15,6 +16,25 @@ import { FeedService } from '../../providers/feed-service';
 })
 export class FeedSettingsPage {
   feedSettingsForm: FormGroup;
+  feeds = [{
+    title: 'BBC News',
+    url: 'http://feeds.bbci.co.uk/news/rss.xml?edition=uk'
+  }, {
+    title: 'Guardian World News',
+    url: 'https://www.theguardian.com/world/rss'
+  }, {
+    title: 'BBC Sport',
+    url: 'http://feeds.bbci.co.uk/sport/rss.xml'
+  }, {
+    title: 'Hacker News',
+    url: 'https://news.ycombinator.com/rss'
+  }, {
+    title: 'JSFeeds',
+    url: 'http://jsfeeds.com/feed'
+  }, {
+    title: 'Lifehacker',
+    url: 'http://feeds.gawker.com/lifehacker/full'
+  }];
 
   constructor(
     public fb: FormBuilder,
@@ -32,6 +52,10 @@ export class FeedSettingsPage {
     if(this.feedSettingsForm) {
       this.feedService.feedUrl = this.feedSettingsForm.value.feedUrl;
     }
+  }
+
+  removeFeed(feed) {
+    pull(this.feeds, feed);
   }
 
 }

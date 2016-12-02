@@ -16,34 +16,17 @@
 <ion-content>
   <form *ngIf="feedSettingsForm" [formGroup]="feedSettingsForm">
     <ion-list radio-group formControlName="feedUrl">
-      <ion-item>
-        <ion-label>BBC News</ion-label>
-        <ion-radio value="http://feeds.bbci.co.uk/news/rss.xml?edition=uk"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Guardian World News</ion-label>
-        <ion-radio value="https://www.theguardian.com/world/rss"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>BBC Sport</ion-label>
-        <ion-radio value="http://feeds.bbci.co.uk/sport/rss.xml"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Hacker News</ion-label>
-        <ion-radio value="https://news.ycombinator.com/rss"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>JSFeeds</ion-label>
-        <ion-radio value="http://jsfeeds.com/feed"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Lifehacker</ion-label>
-        <ion-radio value="http://feeds.gawker.com/lifehacker/full"></ion-radio>
-      </ion-item>
-      <ion-item>
-        <ion-label>Ionic Stack Overflow Questions</ion-label>
-        <ion-radio value="http://stackoverflow.com/feeds/tag?tagnames=ionic&sort=newest"></ion-radio>
-      </ion-item>
+      <ion-item-sliding *ngFor="let feed of feeds">
+        <ion-item>
+          <ion-label>{{ feed.title }}</ion-label>
+          <ion-radio [value]="feed.url"></ion-radio>
+        </ion-item>
+        <ion-item-options side="left" icon-left>
+          <button ion-button color="danger" (click)="removeFeed(feed)">
+            <ion-icon name="trash"></ion-icon> Delete
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
     </ion-list>
   </form>
 </ion-content>
