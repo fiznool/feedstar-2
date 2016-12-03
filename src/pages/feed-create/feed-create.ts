@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ViewController } from 'ionic-angular';
 
 /*
@@ -12,8 +13,24 @@ import { ViewController } from 'ionic-angular';
   templateUrl: 'feed-create.html'
 })
 export class FeedCreatePage {
+  feedCreateForm: FormGroup;
 
-  constructor(public viewCtrl: ViewController) {}
+  constructor(
+    public fb: FormBuilder,
+    public viewCtrl: ViewController
+  ) {}
+
+  ionViewDidLoad() {
+    this.feedCreateForm = this.fb.group({
+      title: ['' , Validators.required ],
+      url: ['' , Validators.required ]
+    });
+  }
+
+  saveFeed() {
+    debugger;
+    this.viewCtrl.dismiss(this.feedCreateForm.value);
+  }
 
   dismiss() {
     this.viewCtrl.dismiss();

@@ -59,9 +59,11 @@ export class FeedSettingsPage {
   }
 
   addFeed() {
-    this.modalCtrl
-      .create(FeedCreatePage)
-      .present();
+    const addFeedModal = this.modalCtrl.create(FeedCreatePage);
+    addFeedModal.onDidDismiss(feed => {
+      this.feeds.push(feed);
+    });
+    addFeedModal.present();
   }
 
   removeFeed(feed) {

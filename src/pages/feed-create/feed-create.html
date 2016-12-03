@@ -18,6 +18,21 @@
 </ion-header>
 
 
-<ion-content padding>
-  I'm the create page!
+<ion-content>
+  <form *ngIf="feedCreateForm" [formGroup]="feedCreateForm" (ngSubmit)="feedCreateForm.valid && saveFeed()" novalidate>
+    <ion-item>
+      <ion-label floating>Title</ion-label>
+      <ion-input type="text" formControlName="title"></ion-input>
+    </ion-item>
+    <ion-item>
+      <ion-label floating>URL</ion-label>
+      <ion-input type="text" formControlName="url"></ion-input>
+    </ion-item>
+    <div padding>
+      <button type="submit" ion-button block icon-left color="secondary" [disabled]="feedCreateForm.invalid">
+        <ion-icon name="checkmark"></ion-icon>
+        <ion-label>Save</ion-label>
+      </button>
+    </div>
+  </form>
 </ion-content>
