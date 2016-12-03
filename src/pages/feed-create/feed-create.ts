@@ -2,16 +2,6 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ViewController } from 'ionic-angular';
 
-function isUrl(c: FormControl) {
-  if(c.value.match(/^(?:http|https):\/\/.+/)) {
-    return null;
-  }
-
-  return {
-    url: true
-  }
-}
-
 /*
   Generated class for the FeedCreate page.
 
@@ -40,12 +30,24 @@ export class FeedCreatePage {
           Validators.maxLength(30)
         ])
       ],
-      url: ['' , isUrl ]
+      url: [
+        '' ,
+        FeedCreatePage.isUrl
+      ]
     });
   }
 
+  static isUrl(c: FormControl) {
+    if(c.value.match(/^(?:http|https):\/\/.+/)) {
+      return null;
+    }
+
+    return {
+      url: true
+    }
+  }
+
   saveFeed() {
-    debugger;
     this.viewCtrl.dismiss(this.feedCreateForm.value);
   }
 
