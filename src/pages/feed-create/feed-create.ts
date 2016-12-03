@@ -1,6 +1,16 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ViewController } from 'ionic-angular';
+
+function isUrl(c: FormControl) {
+  if(c.value.match(/^(?:http|https):\/\/.+/)) {
+    return null;
+  }
+
+  return {
+    url: true
+  }
+}
 
 /*
   Generated class for the FeedCreate page.
@@ -22,8 +32,15 @@ export class FeedCreatePage {
 
   ionViewDidLoad() {
     this.feedCreateForm = this.fb.group({
-      title: ['' , Validators.required ],
-      url: ['' , Validators.required ]
+      title: [
+        '',
+        Validators.compose([
+          Validators.required,
+          Validators.minLength(3),
+          Validators.maxLength(30)
+        ])
+      ],
+      url: ['' , isUrl ]
     });
   }
 
