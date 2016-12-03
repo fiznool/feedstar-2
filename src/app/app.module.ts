@@ -12,6 +12,7 @@ import { AppTabsPage } from '../pages/app-tabs/app-tabs';
 import { FeedListPage } from '../pages/feed-list/feed-list';
 import { FeedDetailPage } from '../pages/feed-detail/feed-detail';
 import { FeedSettingsPage } from '../pages/feed-settings/feed-settings';
+import { FeedCreatePage } from '../pages/feed-create/feed-create';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { FeedSettingsPage } from '../pages/feed-settings/feed-settings';
     AppTabsPage,
     FeedListPage,
     FeedDetailPage,
-    FeedSettingsPage
+    FeedSettingsPage,
+    FeedCreatePage
   ],
   imports: [
     IonicModule.forRoot(MyApp)
@@ -31,7 +33,8 @@ import { FeedSettingsPage } from '../pages/feed-settings/feed-settings';
     AppTabsPage,
     FeedListPage,
     FeedDetailPage,
-    FeedSettingsPage
+    FeedSettingsPage,
+    FeedCreatePage
   ],
   providers: [
     Storage,

@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ModalController } from 'ionic-angular';
+
+import pull from 'lodash/pull';
 
 import { FeedService } from '../../providers/feed-service';
-import pull from 'lodash/pull';
+import { FeedCreatePage } from '../feed-create/feed-create';
 
 /*
   Generated class for the FeedSettings page.
@@ -38,7 +41,8 @@ export class FeedSettingsPage {
 
   constructor(
     public fb: FormBuilder,
-    public feedService: FeedService
+    public feedService: FeedService,
+    public modalCtrl: ModalController
   ) {}
 
   ionViewDidLoad() {
@@ -52,6 +56,12 @@ export class FeedSettingsPage {
     if(this.feedSettingsForm) {
       this.feedService.feedUrl = this.feedSettingsForm.value.feedUrl;
     }
+  }
+
+  addFeed() {
+    this.modalCtrl
+      .create(FeedCreatePage)
+      .present();
   }
 
   removeFeed(feed) {
