@@ -8,6 +8,18 @@ interface ValidationResult {
  [key:string]:boolean;
 }
 
+function debounce(work, timeout: number) {
+  let timer = null;
+  return function(...args): Promise<void> {
+    clearTimeout(timer);
+    return new Promise((resolve, reject) => {
+      timer = setTimeout(() => {
+        work(...args).then(resolve).catch(reject);
+      }, timeout);
+    });
+  };
+}
+
 /*
   Generated class for the FeedCreate page.
 
@@ -40,7 +52,7 @@ export class FeedCreatePage {
       url: [
         '' ,
         FeedCreatePage.isUrl,
-        this.isValidFeed.bind(this)
+        debounce(this.isValidFeed.bind(this), 200)
       ]
     });
   }
