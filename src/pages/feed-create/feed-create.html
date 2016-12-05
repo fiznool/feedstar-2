@@ -24,10 +24,16 @@
       <ion-label floating>Title</ion-label>
       <ion-input type="text" formControlName="title"></ion-input>
     </ion-item>
+    <ion-item *ngFor="let error of titleValidationErrors()">
+      <ion-label color="danger">{{ error }}</ion-label>
+    </ion-item>
     <ion-item>
       <ion-label floating>URL</ion-label>
       <ion-input type="url" formControlName="url"></ion-input>
-      <ion-spinner item-right></ion-spinner>
+      <ion-spinner item-right *ngIf="feedCreateForm.controls.url.pending"></ion-spinner>
+    </ion-item>
+    <ion-item *ngFor="let error of urlValidationErrors()">
+      <ion-label color="danger">{{ error }}</ion-label>
     </ion-item>
     <div padding>
       <button type="submit" ion-button block icon-left color="secondary" [disabled]="feedCreateForm.controls.url.pending || feedCreateForm.invalid">

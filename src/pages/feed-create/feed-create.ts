@@ -51,13 +51,50 @@ export class FeedCreatePage {
       ],
       url: [
         '' ,
-        FeedCreatePage.isUrl,
+        this.isUrl,
         debounce(this.isValidFeed.bind(this), 200)
       ]
     });
   }
 
-  static isUrl(c: FormControl): ValidationResult {
+  titleValidationErrors() {
+    const errors = [];
+    const titleControl = this.feedCreateForm.get('title');
+    if(titleControl.touched) {
+      if(titleControl.hasError('required')) {
+        errors.push('Title is required.');
+      }
+      if(titleControl.hasError('minlength')) {
+        errors.push('Title must be at least 3 characters.');
+      }
+      if(titleControl.hasError('maxlength')) {
+        errors.push('Title must be no more than 30 characters.');
+      }
+    }
+    return errors;
+  }
+
+  urlValidationErrors() {
+    const errors = [];
+    const urlControl = this.feedCreateForm.get('url');
+    if(urlControl.touched && urlControl.hasError('url')) {
+      errors.push('URL must begin with http:// or https://');
+    }
+    if(!urlControl.pending && urlControl.hasError('feed')) {
+      errors.push('URL is not a valid feed, please check and try again.')
+    }
+    return errors;
+  }
+
+  saveFeed() {
+    this.viewCtrl.dismiss(this.feedCreateForm.value);
+  }
+
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
+  private isUrl(c: FormControl): ValidationResult {
     if(c.value.match(/^(?:http|https):\/\/.+/)) {
       return null;
     }
@@ -67,19 +104,11 @@ export class FeedCreatePage {
     }
   }
 
-  isValidFeed(c: FormControl): Promise<ValidationResult> {
+  private isValidFeed(c: FormControl): Promise<ValidationResult> {
     return this.feedService
       .validateFeed(c.value)
       .then(() => null)
-      .catch(err => ({ url: true }));
-  }
-
-  saveFeed() {
-    this.viewCtrl.dismiss(this.feedCreateForm.value);
-  }
-
-  dismiss() {
-    this.viewCtrl.dismiss();
+      .catch(err => ({ feed: true }));
   }
 
 }

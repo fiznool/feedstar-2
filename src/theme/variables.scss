@@ -25,7 +25,7 @@ $background-color:  #fff;
 $colors: (
   primary:    #9C0403,
   secondary:  #039C2E,
-  danger:     #f53d3d,
+  danger:     #AC3738,
   light:      #f4f4f4,
   dark:       #222
 );
@@ -33,12 +33,16 @@ $colors: (
 $toolbar-background: color($colors, primary);
 $tabbar-background: color($colors, light);
 $list-border-color: rgba(172, 151, 151, 0.5);
+$text-input-highlight-color-valid: color($colors, secondary);
+$text-input-highlight-color-invalid: color($colors, danger);
 
 
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
 $tabs-ios-background: $tabbar-background;
+$text-input-ios-highlight-color: color($colors, dark);
+$label-ios-text-color-focused: color($colors, dark);
 
 
 
@@ -48,13 +52,15 @@ $tabs-ios-background: $tabbar-background;
 
 $list-md-border-color: $list-border-color;
 $tabs-md-background: $tabbar-background;
-
-
+$text-input-md-highlight-color: color($colors, dark);
+$label-md-text-color-focused: color($colors, dark);
 
 // App Windows Variables
 // --------------------------------------------------
 // Windows only Sass variables can go here
 $tabs-wp-background: $tabbar-background;
+$text-input-wp-highlight-color: color($colors, dark);
+$label-wp-text-color-focused: color($colors, dark);
 
 
 
