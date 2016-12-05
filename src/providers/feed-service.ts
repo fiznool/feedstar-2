@@ -4,6 +4,7 @@ import { Storage } from '@ionic/storage';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/fromPromise';
+import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/retry';
 import 'rxjs/add/operator/switchMap';
@@ -78,6 +79,18 @@ export class FeedService {
     });
   }
 
+  validateFeed(url): Promise<void> {
+    return this.http
+      .get(`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(url)}`)
+      .toPromise()
+      .then(response => {
+        const res = response.json();
+        if(!res || res.status !== 'ok') {
+          throw new Error('Invalid Feed');
+        }
+      });
+  }
+
   getItems(): Observable<{ feed: Feed, items: Item[] }> {
     return Observable.fromPromise(this.waitForState)
       .switchMap(() => this.fetchItemsFromAPI());
@@ -85,7 +98,7 @@ export class FeedService {
 
   private fetchItemsFromAPI(): Observable<{ feed: Feed, items: Item[] }> {
     return this.http
-      .get('http://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(this.feedUrl))
+      .get('https://api.rss2json.com/v1/api.json?rss_url=' + encodeURIComponent(this.feedUrl))
       .retry(2)
       .map(response => {
         const res = response.json();

@@ -2,6 +2,12 @@ import { Component } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ViewController } from 'ionic-angular';
 
+import { FeedService } from '../../providers/feed-service';
+
+interface ValidationResult {
+ [key:string]:boolean;
+}
+
 /*
   Generated class for the FeedCreate page.
 
@@ -17,7 +23,8 @@ export class FeedCreatePage {
 
   constructor(
     public fb: FormBuilder,
-    public viewCtrl: ViewController
+    public viewCtrl: ViewController,
+    public feedService: FeedService
   ) {}
 
   ionViewDidLoad() {
@@ -32,12 +39,13 @@ export class FeedCreatePage {
       ],
       url: [
         '' ,
-        FeedCreatePage.isUrl
+        FeedCreatePage.isUrl,
+        this.isValidFeed.bind(this)
       ]
     });
   }
 
-  static isUrl(c: FormControl) {
+  static isUrl(c: FormControl): ValidationResult {
     if(c.value.match(/^(?:http|https):\/\/.+/)) {
       return null;
     }
@@ -45,6 +53,13 @@ export class FeedCreatePage {
     return {
       url: true
     }
+  }
+
+  isValidFeed(c: FormControl): Promise<ValidationResult> {
+    return this.feedService
+      .validateFeed(c.value)
+      .then(() => null)
+      .catch(err => ({ url: true }));
   }
 
   saveFeed() {
