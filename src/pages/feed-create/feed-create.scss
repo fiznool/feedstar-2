@@ -1,3 +1,10 @@
 page-feed-create {
-
+  ion-spinner {
+    align-self: flex-end;
+    height: 20px;
+    width: 20px;
+    &.spinner-crescent circle {
+      stroke: color($colors, primary);
+    }
+  }
 }

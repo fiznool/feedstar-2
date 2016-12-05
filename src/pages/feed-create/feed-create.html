@@ -27,7 +27,7 @@
     <ion-item>
       <ion-label floating>URL</ion-label>
       <ion-input type="url" formControlName="url"></ion-input>
-      <ion-spinner item-right *ngIf="feedCreateForm.controls.url.pending"></ion-spinner>
+      <ion-spinner item-right></ion-spinner>
     </ion-item>
     <div padding>
       <button type="submit" ion-button block icon-left color="secondary" [disabled]="feedCreateForm.controls.url.pending || feedCreateForm.invalid">
