@@ -18,6 +18,25 @@ import { Item } from '../models/item';
 import { Settings } from '../models/settings';
 
 const SETTINGS_STORAGE_KEY = 'feedstar:settings';
+const FEEDS = [{
+  title: 'BBC News',
+  url: 'http://feeds.bbci.co.uk/news/rss.xml?edition=uk'
+}, {
+  title: 'Guardian World News',
+  url: 'https://www.theguardian.com/world/rss'
+}, {
+  title: 'BBC Sport',
+  url: 'http://feeds.bbci.co.uk/sport/rss.xml'
+}, {
+  title: 'Hacker News',
+  url: 'https://news.ycombinator.com/rss'
+}, {
+  title: 'JSFeeds',
+  url: 'http://jsfeeds.com/feed'
+}, {
+  title: 'Lifehacker',
+  url: 'http://feeds.gawker.com/lifehacker/full'
+}];
 
 /*
   Generated class for the FeedService provider.
@@ -47,6 +66,15 @@ export class FeedService {
     this.saveSettings(this.appState.settings);
   }
 
+  get feeds(): Feed[] {
+    return this.appState.settings.feeds;
+  }
+
+  set feeds(value: Feed[]) {
+    this.appState.settings.feeds = value;
+    this.saveSettings(this.appState.settings);
+  }
+
   get feed(): Feed {
     return this.appState.feed;
   }
@@ -66,7 +94,8 @@ export class FeedService {
   initialiseState(): Promise<void> {
     this.appState = {
       settings: {
-        feedUrl: 'http://feeds.bbci.co.uk/news/rss.xml?edition=uk'
+        feeds: FEEDS,
+        feedUrl: FEEDS[0].url,
       },
       feed: null,
       items: []

@@ -1,3 +1,6 @@
+import { Feed } from './feed';
+
 export interface Settings {
-  feedUrl: string
+  feedUrl: string,
+  feeds: Feed[]
 }

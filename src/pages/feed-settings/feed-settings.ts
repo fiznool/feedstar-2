@@ -2,8 +2,9 @@ import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { ModalController } from 'ionic-angular';
 
-import pull from 'lodash/pull';
+import without from 'lodash/without';
 
+import { Feed } from '../../models/feed';
 import { FeedService } from '../../providers/feed-service';
 import { FeedCreatePage } from '../feed-create/feed-create';
 
@@ -19,25 +20,6 @@ import { FeedCreatePage } from '../feed-create/feed-create';
 })
 export class FeedSettingsPage {
   feedSettingsForm: FormGroup;
-  feeds = [{
-    title: 'BBC News',
-    url: 'http://feeds.bbci.co.uk/news/rss.xml?edition=uk'
-  }, {
-    title: 'Guardian World News',
-    url: 'https://www.theguardian.com/world/rss'
-  }, {
-    title: 'BBC Sport',
-    url: 'http://feeds.bbci.co.uk/sport/rss.xml'
-  }, {
-    title: 'Hacker News',
-    url: 'https://news.ycombinator.com/rss'
-  }, {
-    title: 'JSFeeds',
-    url: 'http://jsfeeds.com/feed'
-  }, {
-    title: 'Lifehacker',
-    url: 'http://feeds.gawker.com/lifehacker/full'
-  }];
 
   constructor(
     public fb: FormBuilder,
@@ -45,16 +27,31 @@ export class FeedSettingsPage {
     public modalCtrl: ModalController
   ) {}
 
+  get feeds(): Feed[] {
+    return this.feedService.feeds;
+  }
+
+  set feeds(feeds: Feed[]) {
+    this.feedService.feeds = feeds;
+  }
+
+  get feedUrl(): string {
+    return this.feedService.feedUrl;
+  }
+
+  set feedUrl(url: string) {
+    this.feedService.feedUrl = url;
+  }
+
   ionViewDidLoad() {
-    const feedUrl = this.feedService.feedUrl;
     this.feedSettingsForm = this.fb.group({
-      feedUrl: [ feedUrl, Validators.required ]
+      feedUrl: [ this.feedUrl, Validators.required ]
     });
   }
 
   ionViewWillLeave() {
     if(this.feedSettingsForm) {
-      this.feedService.feedUrl = this.feedSettingsForm.value.feedUrl;
+      this.feedUrl = this.feedSettingsForm.value.feedUrl;
     }
   }
 
@@ -62,14 +59,14 @@ export class FeedSettingsPage {
     const addFeedModal = this.modalCtrl.create(FeedCreatePage);
     addFeedModal.onDidDismiss(feed => {
       if(feed) {
-        this.feeds.push(feed);
+        this.feeds = this.feeds.concat(feed);
       }
     });
     addFeedModal.present();
   }
 
   removeFeed(feed) {
-    pull(this.feeds, feed);
+    this.feeds = without(this.feeds, feed);
   }
 
 }
